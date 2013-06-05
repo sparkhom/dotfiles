@@ -1,0 +1,6 @@
+[user]
+    name = Serguey Parkhomovsky
+	email = xindigo@gmail.com
+[alias]
+    lol = log --graph --decorate --oneline
+    lola = log --graph --decorate --oneline --all
