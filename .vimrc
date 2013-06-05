@@ -28,8 +28,6 @@ set cul " highlight current line
 set hidden " enable hidden buffers
 set pastetoggle=<F3> " enable paste toggle
 
-filetype plugin indent on " load indent
-
 set nobackup " no backup files
 set noswapfile " no swap file
 
@@ -59,6 +57,7 @@ else
     call vundle#rc()
 endif
 
+filetype off " necessary for vundle
 " vundle bundles
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
@@ -66,6 +65,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
+Bundle 'elzr/vim-json'
+
+filetype plugin indent on " turn on filetypes
 
 " nerdtree 
 nmap <F2> :NERDTreeToggle<CR>
