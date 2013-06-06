@@ -57,7 +57,7 @@ else
     call vundle#rc()
 endif
 
-filetype off " necessary for vundle
+filetype off " required for vundle
 " vundle bundles
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
@@ -66,6 +66,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'elzr/vim-json'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 
 filetype plugin indent on " turn on filetypes
 
