@@ -5,6 +5,7 @@ colorscheme jellybeans " color scheme of the week/month/year
 set guifont=Consolas:h10 " font if we're running a GUI
 set encoding=utf-8 " utf-8
 set guicursor+=a:blinkon0 " no blinking
+" this doesn't work if it's all one line
 set go-=T " remove toolbar
 set go-=m " remove menu bar
 set go-=L " remove left toolbar
@@ -28,8 +29,9 @@ set cul " highlight current line
 set hidden " enable hidden buffers
 set pastetoggle=<F3> " enable paste toggle
 
-set nobackup " no backup files
-set noswapfile " no swap file
+" backup files
+set nobackup
+set noswapfile " no swap files, please
 
 set backspace=indent,eol,start " make backspace work well
 
@@ -42,8 +44,10 @@ set smartcase " unless there are capital letters in it
 " mail stuff
 autocmd Filetype mail setl spell
 
-" various keyboard mappings
+" space to stop hilighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" tidy json
+nnoremap <silent> <Leader>j :%!python -m json.tool<CR> 
 
 " platform-specific setup
 if has('win32') || has('win64') " looks like we're using windows
@@ -57,7 +61,7 @@ else
     call vundle#rc()
 endif
 
-filetype off " required for vundle
+filetype off " necessary for vundle
 " vundle bundles
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
@@ -71,5 +75,5 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 filetype plugin indent on " turn on filetypes
 
 " nerdtree 
-nmap <F2> :NERDTreeToggle<CR>
+nnoremap <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=1 " fancy arrows
