@@ -25,7 +25,7 @@ set showcmd " show the command being typed
 set ruler " always show current position
 set wildmenu " command-line completion
 set laststatus=2 " always show status line
-set cul " highlight current line
+" set cul " highlight current line (makes syntax highlighting super slow)
 set hidden " enable hidden buffers
 set pastetoggle=<F3> " enable paste toggle
 
