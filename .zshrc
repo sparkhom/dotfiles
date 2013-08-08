@@ -9,7 +9,16 @@ zstyle ':completion:*' menu select
 autoload -Uz compinit
 compinit
 
-export PS1="%m:%~ %n%# "
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats ' (%b|%a) '
+zstyle ':vcs_info:*' formats ' (%b) '
+zstyle ':vcs_info:*' enable git
+precmd() {
+  vcs_info
+}
+
+export PROMPT='%m:%~ %n${vcs_info_msg_0_}%# '
 export EDITOR="vim"
 export PAGER="less"
 export CLICOLOR="yes"
