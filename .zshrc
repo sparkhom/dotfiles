@@ -11,8 +11,8 @@ compinit
 
 setopt prompt_subst
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats ' (%b|%a) '
-zstyle ':vcs_info:*' formats ' (%b) '
+zstyle ':vcs_info:*' actionformats ' (%b|%a)'
+zstyle ':vcs_info:*' formats ' (%b)'
 zstyle ':vcs_info:*' enable git
 precmd() {
   vcs_info
