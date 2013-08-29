@@ -70,10 +70,11 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'elzr/vim-json'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
+Bundle 'bling/vim-airline'
 
 filetype plugin indent on " turn on filetypes
 
 " nerdtree 
 nnoremap <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=1 " fancy arrows
+let g:airline_powerline_fonts = 1 " fancy fonts
