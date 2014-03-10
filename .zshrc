@@ -28,4 +28,4 @@ alias l="ls"
 alias la="ls -alF"
 alias tmuxre="tmux att || tmux new"
 
-fortune
+fortune -a
