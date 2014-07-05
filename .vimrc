@@ -1,15 +1,19 @@
 " serguey's vimrc
 
+if has('gui_running')
+    set guifont=Menlo\ for\ Powerline:h12 " font if we're running a GUI
+    set guicursor+=a:blinkon0 " no blinking
+    " this doesn't work if it's all one line
+    set go-=T " remove toolbar
+    set go-=m " remove menu bar
+    set go-=L " remove left toolbar
+    set go-=r " remove right toolbar
+    set lines=35 columns=100 " default lines and columns on opening
+endif
+
 set background=dark " dark background
 colorscheme jellybeans " color scheme of the week/month/year
-set guifont=Consolas:h10 " font if we're running a GUI
 set encoding=utf-8 " utf-8
-set guicursor+=a:blinkon0 " no blinking
-" this doesn't work if it's all one line
-set go-=T " remove toolbar
-set go-=m " remove menu bar
-set go-=L " remove left toolbar
-set go-=r " remove right toolbar
 
 syntax on " turn on syntax highlighting
 
@@ -41,13 +45,22 @@ set hlsearch " highlight search terms
 set ignorecase " ignore search case
 set smartcase " unless there are capital letters in it
 
-" mail stuff
-autocmd Filetype mail setl spell
+" when to have spellcheck
+autocmd Filetype mail,markdown setl spell
 
 " space to stop hilighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 " tidy json
 nnoremap <silent> <Leader>j :%!python -m json.tool<CR> 
+" nerdtree 
+nnoremap <F2> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows=1 " fancy arrows
+" airline
+let g:airline_powerline_fonts = 1 " fancy fonts
+" dash
+nmap <silent> <Leader>d <Plug>DashSearch
+" markdown
+let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json', 'ruby', 'sass', 'xml', 'php', 'sql']
 
 " platform-specific setup
 if has('win32') || has('win64') " looks like we're using windows
@@ -61,7 +74,7 @@ else
     call vundle#rc()
 endif
 
-filetype off " necessary for vundle
+filetype off " necessary for vundle and older versions of vim
 " vundle bundles
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
@@ -72,10 +85,14 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-fugitive'
 Bundle 'elzr/vim-json'
 Bundle 'bling/vim-airline'
+Bundle 'gregsexton/MatchTag'
+Bundle 'evidens/vim-twig'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+Bundle 'rking/ag.vim'
+Bundle 'tpope/vim-markdown'
+Bundle 'godlygeek/tabular'
+Bundle 'jkramer/vim-checkbox'
+Bundle 'cwoac/nvim'
 
 filetype plugin indent on " turn on filetypes
-
-" nerdtree 
-nnoremap <F2> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrows=1 " fancy arrows
-let g:airline_powerline_fonts = 1 " fancy fonts
