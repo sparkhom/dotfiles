@@ -8,7 +8,7 @@ if has('gui_running')
     set go-=m " remove menu bar
     set go-=L " remove left toolbar
     set go-=r " remove right toolbar
-    set lines=35 columns=100 " default lines and columns on opening
+    set lines=999 columns=9999 " default lines and columns on opening
 endif
 
 set background=dark " dark background
@@ -51,8 +51,8 @@ autocmd Filetype mail,markdown setl spell
 " space to stop hilighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 " tidy json
-nnoremap <silent> <Leader>j :%!python -m json.tool<CR> 
-" nerdtree 
+nnoremap <silent> <Leader>j :%!python -m json.tool<CR>
+" nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrows=1 " fancy arrows
 " airline
@@ -61,38 +61,47 @@ let g:airline_powerline_fonts = 1 " fancy fonts
 nmap <silent> <Leader>d <Plug>DashSearch
 " markdown
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json', 'ruby', 'sass', 'xml', 'php', 'sql']
+" trailing whitespace
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " platform-specific setup
 if has('win32') || has('win64') " looks like we're using windows
     " vundle
-    set rtp+=~/vimfiles/bundle/vundle/
-    call vundle#rc('$HOME/vimfiles/bundle/')
+    set rtp+=~/vimfiles/bundle/Vundle.vim/
+    call vundle#begin('$HOME/vimfiles/bundle/')
     " temp dir for windows
     set directory=.,$TEMP
 else
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set rtp+=~/.vim/bundle/Vundle.vim/
+    call vundle#begin()
 endif
 
 filetype off " necessary for vundle and older versions of vim
-" vundle bundles
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-fugitive'
-Bundle 'elzr/vim-json'
-Bundle 'bling/vim-airline'
-Bundle 'gregsexton/MatchTag'
-Bundle 'evidens/vim-twig'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-Bundle 'rking/ag.vim'
-Bundle 'tpope/vim-markdown'
-Bundle 'godlygeek/tabular'
-Bundle 'jkramer/vim-checkbox'
-Bundle 'cwoac/nvim'
+" FIX: PluginUpdate => git pull: git-sh-setup: No such file or directory in MacVim (OK in non-GUI version of Vim)
+if has("gui_macvim")
+    set shell=/bin/bash\ -l
+endif
+" vundle plugins
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-fugitive'
+Plugin 'elzr/vim-json'
+Plugin 'bling/vim-airline'
+Plugin 'gregsexton/MatchTag'
+Plugin 'rizzatti/funcoo.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'sophacles/vim-processing'
+Plugin 'groenewege/vim-less'
+Plugin 'Shougo/vinarise.vim'
+Plugin 'vim-scripts/SAS-Syntax'
+Plugin 'tpope/vim-abolish'
 
+call vundle#end()
 filetype plugin indent on " turn on filetypes
