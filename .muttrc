@@ -1,0 +1,30 @@
+source ~/.mutt/colors.default
+
+set sendmail = '/usr/local/bin/msmtp'
+
+set sort=threads
+set sort_aux=last-date-received
+set strict_threads=yes
+set fast_reply=yes
+unset user_agent
+set pager_context=3
+set pager_index_lines=6
+
+set realname = 'Serguey Parkhomovsky'
+set from = 'sergueyparkhomovsky@gmail.com'
+set use_from = yes
+set edit_headers = yes
+
+set folder = ~/.mail/sergueyparkhomovsky
+set spoolfile = +inbox
+unset record
+set postponed = +drafts
+
+bind index,pager <Esc><Tab> next-unread-mailbox
+macro index K ":push <sidebar-prev><sidebar-open><enter>"
+macro index J ":push <sidebar-next><sidebar-open><enter>"
+set sleep_time=0
+
+set sidebar_width=30
+set sidebar_visible=yes
+mailboxes =inbox =sent =openbsd-bugs =openbsd-tech

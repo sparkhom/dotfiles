@@ -1,0 +1,38 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+ui = ttyui
+accounts = sergueyparkhomovsky
+pythonfile=~/.mutt/offlineimap.py
+
+[Account sergueyparkhomovsky]
+localrepository = Local
+remoterepository = Remote
+status_backend = sqlite
+
+[Repository Local]
+type = Maildir
+localfolders = ~/.mail/sergueyparkhomovsky
+nametrans = lambda folder: {'inbox': 'INBOX',
+                            'drafts': '[Gmail]/Drafts',
+                            'flagged': '[Gmail]/Starred',
+                            'sent': '[Gmail]/Sent Mail',
+                            'trash': '[Gmail]/Trash'
+                            }.get(folder, folder)
+
+[Repository Remote]
+sslcacertfile = ~/ca-bundle.crt
+maxconnections = 1
+type = Gmail
+remoteuser = sergueyparkhomovsky@gmail.com
+remotepasseval = get_keychain_pass(account="sergueyparkhomovsky@gmail.com", server="imap.gmail.com")
+realdelete = no
+createfolders = False
+nametrans = lambda folder: {'INBOX': 'inbox',
+                            '[Gmail]/Drafts': 'drafts',
+                            '[Gmail]/Starred': 'flagged',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Trash': 'trash',
+                            }.get(folder, folder)
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail', '[Gmail]/Important', '[Gmail]/Spam']
