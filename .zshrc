@@ -18,14 +18,21 @@ precmd() {
   vcs_info
 }
 
-export PROMPT='%m:%~ %n${vcs_info_msg_0_}%# '
+set -o vi
+
+export PROMPT='%m:%c %n${vcs_info_msg_0_}%# '
 export EDITOR="vim"
 export PAGER="less"
 export CLICOLOR="yes"
+export PATH=$HOME/bin:/usr/local/opt/gettext/bin:$PATH
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
-alias ls="ls --color=auto"
+alias ls="ls -G"
 alias l="ls"
 alias la="ls -alF"
 alias tmuxre="tmux att || tmux new"
+alias sshirc="ssh -NL 4325:localhost:4325 nullo.me"
+
+source /usr/local/bin/virtualenvwrapper.sh
 
 fortune -a
