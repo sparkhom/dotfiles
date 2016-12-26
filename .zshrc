@@ -54,6 +54,9 @@ fbr() {
 
 ### ALIASES ###
 
+# dotfiles repo (https://news.ycombinator.com/item?id=11071754)
+alias cfg='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+
 ### RUN AFTER LOAD ###
 
 fortune -a
