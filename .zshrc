@@ -1,38 +1,60 @@
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+# serguey's zshrc
 
-setopt INC_APPEND_HISTORY SHARE_HISTORY # share history
+### PLUGINS ###
 
-zstyle ':completion:*' menu select
+if [[ ! -d ~/.zplug ]]; then
+git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
+source ~/.zplug/init.zsh
 
-autoload -Uz compinit
-compinit
+zplug plugins/git, from:oh-my-zsh
+zplug plugins/brew, from:oh-my-zsh
+zplug plugins/osx, from:oh-my-zsh
+zplug plugins/z, from:oh-my-zsh
+zplug plugins/colorize, from:oh-my-zsh
+zplug mafredri/zsh-async
+zplug robbyrussell/oh-my-zsh, use:"lib/history.zsh"
+zplug zsh-users/zsh-syntax-highlighting, defer:2
+zplug zsh-users/zsh-history-substring-search, defer:2
 
-setopt prompt_subst
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' actionformats ' (%b|%a)'
-zstyle ':vcs_info:*' formats ' (%b)'
-zstyle ':vcs_info:*' enable git
-precmd() {
-  vcs_info
+zplug sindresorhus/pure, as:theme, use:pure.zsh
+#zplug themes/mh, as:theme, from:oh-my-zsh
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+
+### KEY BINDINGS ###
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+### ENVIRONMENT ###
+
+export EDITOR=vim
+export PAGER=less
+export CLICOLOR=1
+
+### FUNCTIONS ###
+
+# fbr - checkout git branch (including remote branches)
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-set -o vi
+### ALIASES ###
 
-export PROMPT='%m:%c %n${vcs_info_msg_0_}%# '
-export EDITOR="vim"
-export PAGER="less"
-export CLICOLOR="yes"
-export PATH=$HOME/bin:/usr/local/opt/gettext/bin:$PATH
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-
-alias ls="ls -G"
-alias l="ls"
-alias la="ls -alF"
-alias tmuxre="tmux att || tmux new"
-alias sshirc="ssh -NL 4325:localhost:4325 nullo.me"
-
-source /usr/local/bin/virtualenvwrapper.sh
+### RUN AFTER LOAD ###
 
 fortune -a
