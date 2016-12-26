@@ -12,8 +12,7 @@ zplug plugins/git, from:oh-my-zsh
 zplug plugins/brew, from:oh-my-zsh
 zplug plugins/osx, from:oh-my-zsh
 zplug plugins/z, from:oh-my-zsh
-zplug plugins/colorize, from:oh-my-zsh
-zplug mafredri/zsh-async
+zplug mafredri/zsh-async, defer:0
 zplug robbyrussell/oh-my-zsh, use:"lib/history.zsh"
 zplug zsh-users/zsh-syntax-highlighting, defer:2
 zplug zsh-users/zsh-history-substring-search, defer:2
