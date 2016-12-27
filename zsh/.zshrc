@@ -4,7 +4,7 @@
 
 if [[ ! -d ~/.zplug ]]; then
 git clone https://github.com/zplug/zplug ~/.zplug
-    source ~/.zplug/init.zsh && zplug update --self
+    source ~/.zplug/init.zsh && zplug update
 fi
 source ~/.zplug/init.zsh
 
