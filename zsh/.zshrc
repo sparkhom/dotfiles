@@ -12,6 +12,8 @@ zplug plugins/git, from:oh-my-zsh
 zplug plugins/brew, from:oh-my-zsh
 zplug plugins/osx, from:oh-my-zsh
 zplug plugins/z, from:oh-my-zsh
+zplug plugins/tmux, from:oh-my-zsh
+zplug plugins/tmuxinator, from:oh-my-zsh
 zplug mafredri/zsh-async, defer:0
 zplug robbyrussell/oh-my-zsh, use:"lib/history.zsh"
 zplug zsh-users/zsh-syntax-highlighting, defer:2
@@ -54,8 +56,7 @@ fbr() {
 
 ### ALIASES ###
 
-# dotfiles repo (https://news.ycombinator.com/item?id=11071754)
-alias cfg='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias mux=tmuxinator
 
 ### RUN AFTER LOAD ###
 
