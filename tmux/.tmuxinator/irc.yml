@@ -31,5 +31,5 @@ startup_window: irc
 # post: tmux -CC attach -t irc
 
 windows:
-    - ssh: ssh -NL 4325:localhost:4325 nullo.me
+    - ssh: gcloud compute ssh "mir" -- -NL 4325:localhost:4325
     - irc: sleep 2 && irssi
